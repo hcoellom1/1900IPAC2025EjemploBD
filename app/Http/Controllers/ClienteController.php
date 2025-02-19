@@ -25,4 +25,19 @@ class ClienteController extends Controller
         return view('crear');
     }
 
+    public function guardar(Request $request){
+        $nvoCliente = new Cliente();
+        $nvoCliente->nombre = $request->nombre;
+        $nvoCliente->apellido = $request->apellido;
+        $nvoCliente->salario = $request->sueldo;
+        $nvoCliente->fechaNacimiento = $request->fechaNacimiento;
+        $nvoCliente->save();
+        return to_route('clientes');
+    }
+
+    public function verCliente($codigo){
+        $cliente = Cliente::find($codigo);        
+        return view('visualizar', compact('cliente'));
+    }
+
 }
