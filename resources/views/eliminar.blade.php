@@ -14,15 +14,7 @@
 <body>
     <div class="container mt-5">
         <div class="d-flex justify-content-between mb-3">
-            <h1>Clientes</h1>
-        </div>
-
-        <div class="d-flex justify-content-between mb-3">
-            
-            <a href="{{ route('crear') }}" class="btn btn-primary">
-                <i class="fa-solid fa-plus"></i>
-                Crear
-            </a>
+            <h1>¿Esta seguro de eliminar este cliente?</h1>
         </div>
 
         <table class="table table-striped table-bordered">
@@ -32,31 +24,24 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Sueldo</th>
-                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($clientes as $cliente)
                 <tr>
                     <td>{{$cliente->codigoCliente}}</td>
                     <td>{{$cliente->nombre}}</td>
                     <td>{{$cliente->apellido}}</td>
                     <td>{{$cliente->salario}}</td>
-                    <td class="action-buttons">
-                        <a href="{{ route('editar', $cliente->codigoCliente) }}" class="btn btn-primary btn-sm">
-                            Editar
-                        </a>
-                        <a href="{{ route('ver', $cliente->codigoCliente) }}" class="btn btn-info btn-sm">                            
-                            Visualizar
-                        </a>
-                        <a href="{{ route('eliminar', $cliente->codigoCliente) }}" class="btn btn-danger btn-sm">
-                            Eliminar
-                        </a>
-                    </td>
                 </tr>
-                @endforeach
             </tbody>
         </table>
+
+        
+        <div class="mb-3">
+            <a href="{{ route('clientes') }}" class="btn btn-secondary">Cancelar</a>
+            <a href="{{ route('destroy', $cliente->codigoCliente) }}" class="btn btn-danger">Confirmar</a>
+        </div>
+
     </div>
 
 </body>

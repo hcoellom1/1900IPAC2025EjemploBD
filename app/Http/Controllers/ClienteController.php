@@ -40,4 +40,31 @@ class ClienteController extends Controller
         return view('visualizar', compact('cliente'));
     }
 
+    public function verEditar($id){
+        $cliente= Cliente::find($id);
+        return view('editar', compact('cliente'));
+    }
+
+    public function actualizar(Request $request, $id){
+        $cliente = Cliente::find($id);
+        $cliente->nombre = $request->nombre;
+        $cliente->apellido = $request->apellido;
+        $cliente->salario = $request->sueldo;
+        $cliente->fechaNacimiento = $request->fechaNacimiento;
+
+        $cliente->save();
+        return to_route('clientes');
+    }
+
+    public function eliminar($id){
+        $cliente = Cliente::find($id);
+        return view('eliminar', compact('cliente'));
+    }
+
+    public function destroy($id){
+        $cliente = Cliente::find($id);
+        $cliente->delete();
+        return to_route('clientes');
+    }
+
 }
